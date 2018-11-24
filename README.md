@@ -21,7 +21,21 @@ I tried some combo of the N & dt, like 10 & 0.1, 20 & 0.05, 20 & 0.1,  and I fou
 * The Polynomial fitting is done in polyfit function in main.hpp with a 3rd order polynomial.
 
 ## Model Predictive Control with Latency
-
+The project is taking delayed actuations into account, which means there is 100 ms delay of the actuations to be effective in the car. When choosing different value of dt, the 100 ms delay means different number of steps. In the case of dt = 0.1 s, the delay is one step. The number of delayed steps is latency_ind. In the solve function, the contraints are set that delayed steps of control can only use previous control value.
+```
+  // constrain delta to be the previous control for the latency time
+  for (int i = delta_start; i < delta_start + latency_ind; i++) {
+    vars_lowerbound[i] = delta_prev;
+    vars_upperbound[i] = delta_prev;
+  }
+ ... 
+  
+  // constrain a to be the previous control for the latency time 
+  for (int i = a_start; i < a_start+latency_ind; i++) {
+    vars_lowerbound[i] = a_prev;
+    vars_upperbound[i] = a_prev;
+  }
+```
 
 ## Dependencies
 
