@@ -5,6 +5,7 @@ Self-Driving Car Engineer Nanodegree Program
 
 ## The Model
 The model used is a kinematic bicycle model instead of dynamical model. So the model does not consider inertia, tires, friction.. etc. 
+So the model includes the parameters below as discussed in the class, x, y, psi, v, cte, epsi.
    *  // x_[t+1] = x[t] + v[t] * cos(psi[t]) * dt
    *  // y_[t+1] = y[t] + v[t] * sin(psi[t]) * dt
    *  // psi_[t+1] = psi[t] + v[t] / Lf * delta[t] * dt
@@ -13,10 +14,10 @@ The model used is a kinematic bicycle model instead of dynamical model. So the m
    *  // epsi[t+1] = psi[t] - psides[t] + v[t] * delta[t] / Lf * dt
 
 ## Timestep Length and Elapsed Duration (N & dt)
-
+I tried some combo of the N & dt, like 10 & 0.1, 20 & 0.05, 20 & 0.1,  and I found 10 & 0.1 works well and smooth, when the car drives at around 40 mph.
 
 ## Polynomial Fitting and MPC Preprocessing
-
+Transformation of coordinates is performed into the vehicle coordinate system first. All coordinates of waypoints are in vehicle coordinates system by shifting and rotation of the origin coordinates. The transformation is done in function transformGlobalToLocal.
 
 ## Model Predictive Control with Latency
 
