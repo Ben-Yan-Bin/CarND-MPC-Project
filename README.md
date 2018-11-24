@@ -17,7 +17,8 @@ So the model includes the parameters below as discussed in the class, x, y, psi,
 I tried some combo of the N & dt, like 10 & 0.1, 20 & 0.05, 20 & 0.1,  and I found 10 & 0.1 works well and smooth, when the car drives at around 40 mph.
 
 ## Polynomial Fitting and MPC Preprocessing
-Transformation of coordinates is performed into the vehicle coordinate system first. All coordinates of waypoints are in vehicle coordinates system by shifting and rotation of the origin coordinates. The transformation is done in function transformGlobalToLocal.
+* Transformation of coordinates is performed into the vehicle coordinate system first. All coordinates of waypoints are in vehicle coordinates system by shifting and rotation of the origin coordinates. The transformation is done in function transformGlobalToLocal in main.hpp.  
+* The Polynomial fitting is done in polyfit function in main.hpp with a 3rd order polynomial.
 
 ## Model Predictive Control with Latency
 
